@@ -10,6 +10,9 @@ app.get("/ask", (req, res) => {
     res.render("ask");
 })
 
+app.post("/save-question", (req, res) => {
+    res.send("form recebido!")
+})
 app.listen(8080, () => {
     console.log("Servidor rodando")
 })
