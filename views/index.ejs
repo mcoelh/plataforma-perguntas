@@ -3,18 +3,17 @@
     <%- include ('partials/navbar.ejs')%>
     <div class="container">
         <div class="d-flex justify-content-end mt-3">
-            <a href="/ask" class="btn btn-primary buttonLink">Perguntar</a>
+            <a href="/perguntar" class="btn btn-primary buttonLink">Perguntar</a>
         </div>
         <h1 class="mt-2 mb-3">Perguntas</h1>
         <% perguntas.forEach(pergunta => { %>
-
             <div class="card mt-3">
                 <div class="card-body">
                     <h1><%= pergunta.titulo %></h1>
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-end">
-                        <a href="./answer/<%= pergunta.id %>">
+                        <a href="./responder/<%= pergunta.id %>">
                         <button class="btn btn-primary"> Responder </button>
                         </a>
                     </div>

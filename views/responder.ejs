@@ -1,5 +1,4 @@
 <%- include ('partials/header.ejs')%>
-
     <body>
         <%- include ('partials/navbar.ejs')%>
             <div class="container">
@@ -16,7 +15,7 @@
                     </div>
                     <div class="card">
                         <div class="card-body">
-                            <form method="POST" action="/reply">
+                            <form method="POST" action="/salvar-resposta">
                                 <label for="corpo">Responda</label>
                                 <textarea  name="corpo" class="form-control"></textarea>
                                 <input type="hidden" value="<%= pergunta.id %>" name="pergunta"/>
@@ -28,7 +27,16 @@
                             </form>
                         </div>
                     </div>
-
+                    <div class="my-3">
+                        <h1>Respostas</h1>
+                    </div>
+                    <% respostas.forEach( resposta => {%>
+                            <div class="card mt-3">
+                                <div class="card-body">
+                                    <p><%= resposta.corpo %></p>
+                                </div>
+                            </div>
+                        <%})%>
             </div>
     </body>
     <%- include ('partials/footer.ejs')%>
