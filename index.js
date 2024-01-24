@@ -50,19 +50,38 @@ app.post("/save-question", (req, res) => {
     })
 })
 
-app.get("/pergunta/:id", (req, res) => {
+app.get("/answer/:id", (req, res) => {
     var id = req.params.id;
     perguntaModel.findOne({
         where: { id: id }
     }).then(pergunta => {
         if (pergunta != undefined) {
-            res.render("pergunta", {
-                pergunta: pergunta
+
+            respostaModel.findAll({
+                where: { perguntaId: pergunta.id }
+            }).then(resposta => {
+                res.render("answer", {
+                    pergunta: pergunta,
+                    resposta: resposta
+                })
+
             })
         } else {
             res.redirect("/")
         }
     })
+})
+
+app.post("/reply", (req, res) => {
+    var { corpo, pergunta } = req.body;
+    console.log(req.body);
+    respostaModel.create({
+        corpo,
+        perguntaId: pergunta
+    }).then(() => {
+        res.redirect("/answer/" + pergunta)
+    });
+
 })
 app.listen(8080, () => {
     console.log("Servidor rodando!")
